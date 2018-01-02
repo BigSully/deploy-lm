@@ -1,0 +1,36 @@
+[
+  {
+    "configFile": "jazmin.js.default", 
+    "id": "102a70a102a106",
+    "instance": "instance/102a70a102a106",
+    "localPackage": "/home/operationer/.jenkins/workspace/newkand/KandSubSystem/build/libs/KandSubSystem.jaz", 
+    "packageName": "KandSubSystem.jaz", 
+    "port": 6003, 
+    "privateHost": "10.110.13.30",
+    "publicHost": "102.70.102.106",
+    "rootPassword": "rootpass", 
+    "serverRoot": "/home/appadmin/jazmin_server", 
+    "sshPassword": "pass",
+    "sshPort": 22, 
+    "sshUser": "appadmin", 
+    "startCommand": "/home/appadmin/jazmin_server/jazmin startbg", 
+    "stopCommand": "/home/appadmin/jazmin_server/jazmin stop"
+  },
+  {
+    "configFile": "jazmin.js.default", 
+    "id": "102a04a100a120",
+    "instance": "instance/102a04a100a120",
+    "localPackage": "/home/operationer/.jenkins/workspace/newkand/KandSubSystem/build/libs/KandSubSystem.jaz", 
+    "packageName": "KandSubSystem.jaz", 
+    "port": 6003, 
+    "privateHost": "10.117.20.55",
+    "publicHost": "102.04.100.120",
+    "rootPassword": "rootpass", 
+    "serverRoot": "/home/appadmin/jazmin_server", 
+    "sshPassword": "pass",
+    "sshPort": 22, 
+    "sshUser": "appadmin", 
+    "startCommand": "/home/appadmin/jazmin_server/jazmin startbg", 
+    "stopCommand": "/home/appadmin/jazmin_server/jazmin stop"
+  }
+]
