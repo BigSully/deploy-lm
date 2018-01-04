@@ -2,7 +2,7 @@ from datetime import datetime
 import os, time
 import deploy_app, utils
 
-logger = utils.getLogger(os.path.basename(__file__))
+logger = utils.get_logger(os.path.basename(__file__))
 
 def deploy(node, context):
     ## execute command,  stop ->pass file ->startbg

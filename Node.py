@@ -2,7 +2,7 @@ import traceback,os
 import paramiko
 import utils
 
-logger = utils.getLogger(os.path.basename(__file__))
+logger = utils.get_logger(os.path.basename(__file__))
 
 class Node:
     def __init__(self, context):

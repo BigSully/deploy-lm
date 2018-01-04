@@ -1,8 +1,8 @@
 import logging, os
 
-def getLogger(name):
+def get_logger(name):
     format = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-    logger = logging.getLogger(name)
+    logger = logging.get_logger(name)
     logger.setLevel(logging.DEBUG)
 
     consoleHandler = logging.StreamHandler()

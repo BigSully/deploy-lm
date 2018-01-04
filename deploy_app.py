@@ -5,7 +5,7 @@ import utils
 
 configs = json.load(open('config.json'))
 dbFileName=configs['servers_remaining']  ## this variable should and will be shared among multiple processes, not just the main process!!
-logger = utils.getLogger(os.path.basename(__file__))
+logger = utils.get_logger(os.path.basename(__file__))
 
 def afterSuccess(server):  ## 选择sqlite而不是文件的原因是文件会产生race condition，试了很多种办法都没能好好解决,而用sqlite3就不会有这个问题!!
     with sqlite3.connect(dbFileName) as conn:
