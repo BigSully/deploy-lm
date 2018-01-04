@@ -2,15 +2,15 @@ import logging, os
 
 def get_logger(name):
     format = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-    logger = logging.get_logger(name)
+    logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)
 
     console_handler = logging.StreamHandler()
     console_handler.setFormatter(format)
     logger.addHandler(console_handler)
 
-    if not os.path.exists("logs"): os.makedirs("logs")
-    file_handler = logging.file_handler("deploy.log")
+    #if not os.path.exists("logs"): os.makedirs("logs")
+    file_handler = logging.FileHandler("deploy.log")
     file_handler.setFormatter(format)
     logger.addHandler(file_handler)
 
