@@ -5,14 +5,14 @@ def get_logger(name):
     logger = logging.get_logger(name)
     logger.setLevel(logging.DEBUG)
 
-    consoleHandler = logging.StreamHandler()
-    consoleHandler.setFormatter(format)
-    logger.addHandler(consoleHandler)
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(format)
+    logger.addHandler(console_handler)
 
     if not os.path.exists("logs"): os.makedirs("logs")
-    fileHandler = logging.FileHandler("deploy.log")
-    fileHandler.setFormatter(format)
-    logger.addHandler(fileHandler)
+    file_handler = logging.file_handler("deploy.log")
+    file_handler.setFormatter(format)
+    logger.addHandler(file_handler)
 
     return logger
 
