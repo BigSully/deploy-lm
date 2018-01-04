@@ -19,9 +19,9 @@ class Node:
     def exec(self, cmd):
         client=self.client
         stdin,stdout,stderr = client.exec_command(cmd) ## uptime...
-        errMsg=stderr.read()
-        if len(errMsg) > 0:
-            raise Exception("【error】cmd: {}, error: {}".format(cmd, errMsg))
+        err_msg=stderr.read()
+        if len(err_msg) > 0:
+            raise Exception("【error】cmd: {}, error: {}".format(cmd, err_msg))
         return stdout.read().decode("utf-8")  ## read bytes, decode it to string
 
     def init(self):
@@ -31,8 +31,8 @@ class Node:
         try:
             client.connect(self.host, username=self.username, password=self.password)
         except paramiko.SSHException:
-            errMsg=traceback.format_exc()
-            logger.error('【error】Connection Failed, host: {}, error: {}'.format(self.host, errMsg))
+            err_msg=traceback.format_exc()
+            logger.error('【error】Connection Failed, host: {}, error: {}'.format(self.host, err_msg))
             quit()
 
     def close(self):
