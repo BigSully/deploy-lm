@@ -20,7 +20,7 @@ def deploy(node, context):
     cmdStartJazmin=context['startCommand']  + " " +  instance  # /home/appadmin/jazmin_server/jazmin startbg  instance/112a74a103a124
     cmdPath = "PATH='/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin'";   ## just to resolve "ifconfig cannot be found"
 
-    cmdGroup01 = " && ".join( [cmdPath, cmdChangeDirectory, cmdKillJaz, cmdMakeDir] )  ## These command should succeed in the same time.
+    cmdGroup01 = " && ".join( [cmdPath, cmdChangeDirectory, cmdKillJaz, cmdMakeDir] )  ## These commands should succeed at the same time.
     node.exec(cmdGroup01)
     node.upload(localpath, remotepath)
     cmdGroup02 = " && ".join( [cmdPath, cmdClearPid, cmdStartJazmin] )
