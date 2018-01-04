@@ -10,7 +10,7 @@ def getLogger(name):
     logger.addHandler(consoleHandler)
 
     if not os.path.exists("logs"): os.makedirs("logs")
-    fileHandler = logging.FileHandler("logs/deploy.log")
+    fileHandler = logging.FileHandler("deploy.log")
     fileHandler.setFormatter(format)
     logger.addHandler(fileHandler)
 
