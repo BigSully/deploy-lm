@@ -1,6 +1,6 @@
 from datetime import datetime
 import os, time
-import deployApp, utils
+import deploy_app, utils
 
 logger = utils.getLogger(os.path.basename(__file__))
 
@@ -35,7 +35,7 @@ def monitor(node, context):
 def main():
     startTime=datetime.now()
     logger.info("##starting time: {}".format(startTime))
-    deployApp.parallelDeploy(deploy)  ## deploy concurrently
+    deploy_app.parallel_deploy(deploy)  ## deploy concurrently
     endTime=datetime.now()
     seconds=(endTime - startTime).seconds
     minutes=seconds//60

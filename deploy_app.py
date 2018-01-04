@@ -21,10 +21,10 @@ def task(context, index, deploy=None):
             errMsg=traceback.format_exc()
             logger.error('【error】Deploying Failed, host: {}, error: {}'.format(node.host, errMsg))
 
-def parallelDeploy(deploy=None):
+def parallel_deploy(deploy=None):
     max_workers=configs['max_workers']
     serversAllName=configs['servers_all']
-    servers = determineServers(serversAllName, dbFileName)
+    servers = determine_servers(serversAllName, dbFileName)
     serverCount=len(servers)
     if servers is None or serverCount == 0: return
     if serverCount < 20: min(5, max_workers)  ## 剩余任务较少时减少进程数
@@ -35,7 +35,7 @@ def parallelDeploy(deploy=None):
     logger.info("#################### {} tasks have finished!! ####################".format(serverCount))
 
 
-def determineServers(serversAllName, dbFileName):
+def determine_servers(serversAllName, dbFileName):
     servers = json.load(open(serversAllName))
     hasDbFile=os.path.exists(dbFileName)
     with sqlite3.connect(dbFileName) as conn:
