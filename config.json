@@ -1,7 +1,7 @@
 {
-  "servers_all": "D:/RUBBISH/secureCRT_downloads/server_test.json",
-  "servers_remaining": "servers.remaining.db",
-  "servers_manual": "servers.manual.txt",
+  "servers_all": "server.json",
+  "servers_remaining": "servers.db",
+  "servers_manual": "servers.txt",
   "max_workers": 2,
   "dummy": 1
 }
