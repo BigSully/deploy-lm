@@ -27,7 +27,7 @@ def parallel_deploy(deploy=None):
     servers = determine_servers(servers_all_name, db_file_name)
     server_count=len(servers)
     if servers is None or server_count == 0: return
-    if server_count < 20: min(5, max_workers)  ## 剩余任务较少时减少进程数
+    if server_count < 20: max_workers=min(5, max_workers)  ## 剩余任务较少时减少进程数
     logger.info("##servers: {}, max workers: {}".format(server_count, max_workers))
     with ProcessPoolExecutor(max_workers) as executor:
         for index,server in enumerate(servers):
