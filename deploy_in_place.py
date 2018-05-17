@@ -1,5 +1,7 @@
 import sys, os, json, sqlite3
-import utils, main_app;
+from task_dispatcher import parallel_run
+from action import deploy
+import utils;
 configs = json.load(open('config.json'))
 db_file_name=configs['servers_remaining']
 servers_manual=configs['servers_manual']
@@ -23,7 +25,8 @@ def main():
             conn.execute('INSERT INTO server VALUES ( :host )', { "host": host })
         print("#################### Hosts have been imported to sqlite database to reploy! ####################")
 
+    parallel_run(deploy)  ## deploy concurrently
+
 if __name__ ==  '__main__':
     if os.path.exists(db_file_name): os.remove(db_file_name)
     main()
-    main_app.main()

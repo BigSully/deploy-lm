@@ -21,7 +21,7 @@ def task(context, index, deploy=None):
             errMsg=traceback.format_exc()
             logger.error('【error】Deploying Failed, host: {}, error: {}'.format(node.host, errMsg))
 
-def parallel_deploy(deploy=None):
+def parallel_run(callback=None):
     max_workers=configs['max_workers']
     servers_all_name=configs['servers_all']
     servers = determine_servers(servers_all_name, db_file_name)
@@ -31,7 +31,7 @@ def parallel_deploy(deploy=None):
     logger.info("##servers: {}, max workers: {}".format(server_count, max_workers))
     with ProcessPoolExecutor(max_workers) as executor:
         for index,server in enumerate(servers):
-            executor.submit(task, server, index, deploy)
+            executor.submit(task, server, index, callback)
     logger.info("#################### {} tasks have finished!! ####################".format(server_count))
 
 

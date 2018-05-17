@@ -1,9 +1,28 @@
 from datetime import datetime
 import os, time
-import deploy_app, utils
+import utils
+import functools
 
 logger = utils.get_logger(os.path.basename(__file__))
 
+def profiling(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        logger.info('LOG: Running job "%s"' % func.__name__)
+        start_time = datetime.now()
+        logger.info("##starting time: {}".format(start_time))
+        result = func(*args, **kwargs)
+        end_time = datetime.now()
+        seconds = (end_time - start_time).seconds
+        minutes = seconds // 60
+        seconds = seconds % 60
+        logger.info("##end time: {}".format(end_time))
+        logger.info("#################### tasks have finished in {} minutes {} seconds!! ####################".format(minutes,seconds))
+        logger.info('LOG: Job "%s" completed' % func.__name__)
+        return result
+    return wrapper
+
+@profiling
 def deploy(node, context):
     ## execute command,  stop ->pass file ->startbg
     prefix = context['serverRoot']  #  /home/appadmin/jazmin_server
@@ -26,25 +45,9 @@ def deploy(node, context):
     cmd_group02 = " && ".join( [cmd_path, cmd_clear_pid, cmd_start_jazmin] )
     node.exec(cmd_group02)
 
+@profiling
 def monitor(node, context):
     result = node.exec("ps -ef | grep jaz")
     host = context['publicHost']
     logger.info("##host: {}, message: {}".format(host, result))
     # time.sleep(120)
-
-def main():
-    start_time=datetime.now()
-    logger.info("##starting time: {}".format(start_time))
-    deploy_app.parallel_deploy(deploy)  ## deploy concurrently
-    end_time=datetime.now()
-    seconds=(end_time - start_time).seconds
-    minutes=seconds//60
-    seconds=seconds%60
-    logger.info("##end time: {}".format(end_time))
-    logger.info("#################### tasks have finished in {} minutes {} seconds!! ####################".format(minutes, seconds))
-
-if __name__ ==  '__main__':
-    main()
-    ## 多执行几遍也不会有副作用，适用于易于失败的部署!!
-    # main()
-    # main()
