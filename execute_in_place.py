@@ -1,11 +1,11 @@
 import os, json
 from task_dispatcher import parallel_run
 from prepare_custom_data import prepare_data
-from action import deploy
+from action import deploy, monitor
 
 @prepare_data
 def main():
-    parallel_run(deploy)  ## deploy concurrently
+    parallel_run(monitor)  ## run tasks concurrently
 
 if __name__ ==  '__main__':
     configs = json.load(open('config.json'))

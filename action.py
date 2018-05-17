@@ -46,10 +46,9 @@ def deploy(node, context):
     cmd_group02 = " && ".join( [cmd_path, cmd_clear_pid, cmd_start_jazmin] )
     node.exec(cmd_group02)
 
-@profiling
 def monitor(node, context):
-    cmd="ps -ef | grep jaz"
+    cmd="free -m"
     result = node.exec(cmd)
     host = context['publicHost']
-    logger.info("##host: {}, message: {}".format(host, result))
+    logger.info("##host: {}, message: \n{}".format(host, result))
     # time.sleep(120)
