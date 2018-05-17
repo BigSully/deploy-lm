@@ -1,6 +1,7 @@
 from task_dispatcher import parallel_run
-from action import deploy
+from action import deploy, profiling
 
+@profiling
 def main():
     parallel_run(deploy)  ## deploy concurrently
 

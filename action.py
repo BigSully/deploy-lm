@@ -3,7 +3,6 @@ from datetime import datetime
 import os, time
 import utils
 
-
 logger = utils.get_logger(os.path.basename(__file__))
 
 def profiling(func):
@@ -23,7 +22,6 @@ def profiling(func):
         return result
     return wrapper
 
-@profiling
 def deploy(node, context):
     ## execute command,  stop ->pass file ->startbg
     prefix = context['serverRoot']  #  /home/appadmin/jazmin_server
