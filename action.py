@@ -50,5 +50,5 @@ def monitor(node, context):
     cmd="free -m"
     result = node.exec(cmd)
     host = context['publicHost']
-    logger.info("##host: {}, message: \n{}".format(host, result))
+    print("@{}\n{}".format(host, result))
     # time.sleep(120)
