@@ -1,12 +1,13 @@
+from functools import wraps
 from datetime import datetime
 import os, time
 import utils
-import functools
+
 
 logger = utils.get_logger(os.path.basename(__file__))
 
 def profiling(func):
-    @functools.wraps(func)
+    @wraps(func)
     def wrapper(*args, **kwargs):
         logger.info('LOG: Running job "%s"' % func.__name__)
         start_time = datetime.now()
@@ -47,7 +48,8 @@ def deploy(node, context):
 
 @profiling
 def monitor(node, context):
-    result = node.exec("ps -ef | grep jaz")
+    cmd="ps -ef | grep jaz"
+    result = node.exec(cmd)
     host = context['publicHost']
     logger.info("##host: {}, message: {}".format(host, result))
     # time.sleep(120)
