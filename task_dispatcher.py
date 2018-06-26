@@ -11,17 +11,17 @@ def after_success(server):  ## 选择sqlite而不是文件的原因是文件会�
     with sqlite3.connect(db_file_name) as conn:
         conn.execute("delete from server where host = :host", { "host": server['publicHost'] })
 
-def task(context, index, deploy=None):
+def task(context, index, action=None):
     with Node(context) as node:
         try:
             logger.info("##seq: {:03d}, host: {}".format(index+1, context['publicHost']))  ## print progress
-            if deploy is not None: deploy(node, context)
+            if action is not None: action(node, context)
             after_success(context)
         except:
             errMsg=traceback.format_exc()
             logger.error('【error】Deploying Failed, host: {}, error: {}'.format(node.host, errMsg))
 
-def parallel_run(callback=None):
+def parallel_run(action=None):
     max_workers=configs['max_workers']
     servers_all_name=configs['servers_all']
     servers = determine_servers(servers_all_name, db_file_name)
@@ -31,7 +31,7 @@ def parallel_run(callback=None):
     logger.info("##servers: {}, max workers: {}".format(server_count, max_workers))
     with ProcessPoolExecutor(max_workers) as executor:
         for index,server in enumerate(servers):
-            executor.submit(task, server, index, callback)
+            executor.submit(task, server, index, action)
     logger.info("#################### {} tasks have finished!! ####################".format(server_count))
 
 
