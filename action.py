@@ -48,5 +48,5 @@ def monitor(node, context):
     cmd="free -m"
     result = node.exec(cmd)
     host = context['publicHost']
-    print("@{}\n{}".format(host, result))
+    print("@{}\n{}".format(host, result), flush=True)
     # time.sleep(120)

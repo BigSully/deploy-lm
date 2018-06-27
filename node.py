@@ -29,7 +29,7 @@ class Node:
         client = self.client
         client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         try:
-            client.connect(self.host, username=self.username, password=self.password)
+            client.connect(self.host, username=self.username, password=self.password, timeout=1)
         except paramiko.SSHException:
             err_msg=traceback.format_exc()
             logger.error('【error】Connection Failed, host: {}, error: {}'.format(self.host, err_msg))
