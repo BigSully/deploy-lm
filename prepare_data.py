@@ -1,7 +1,7 @@
 import sys, os, json, sqlite3
 from functools import wraps
 import utils;
-configs = json.load(open('config.json'))
+configs = utils.get_config()
 db_file_name=configs['servers_remaining']
 servers_manual=configs['servers_manual']
 servers_all_name = configs['servers_all']

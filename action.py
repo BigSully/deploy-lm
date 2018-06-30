@@ -4,6 +4,7 @@ import os, time
 import utils
 
 logger = utils.get_logger(os.path.basename(__file__))
+configs = utils.get_config()
 
 def profiling(func):
     @wraps(func)
@@ -26,7 +27,7 @@ def deploy(node, context):
     ## execute command,  stop ->pass file ->startbg
     prefix = context['serverRoot']  #  /home/appadmin/jazmin_server
     instance = context['instance']  # instance/112a74a102a116
-    local_path=context['localPackage']  ## /home/operationer/.jenkins/workspace/newkand/KandSubSystem/build/libs/KandSubSystem.jaz
+    local_path=configs['localPackage'] or context['localPackage']  ## /home/operationer/.jenkins/workspace/newkand/KandSubSystem/build/libs/KandSubSystem.jaz
     remote_path=prefix + "/" + instance + "/" + context['packageName'] ## /home/appadmin/jazmin_server/instance/112a74a102a116/KandSubSystem.jaz
     jazmin_pid_path = prefix + "/" + instance + "/" + "jazmin.pid" ## /home/appadmin/jazmin_server/instance/112a74a102a116/jazmin.pid
     cmd_kill_jaz = "pkill -f /home/appadmin/jazmin_server/jazmin.jar; sleep 1"

@@ -1,3 +1,5 @@
+import argparse
+import json
 import logging, os
 
 def get_logger(name):
@@ -16,3 +18,16 @@ def get_logger(name):
 
     return logger
 
+def get_option():
+    parser = argparse.ArgumentParser(description='Description of your program')
+    parser.add_argument('-p', '--localPackage', help='path for the jaz file')
+    args = vars(parser.parse_args())
+    return args
+
+
+def get_config():
+    configs = json.load(open('config.json'))
+    opt_dict=get_config()
+    configs = {**configs, **opt_dict}  ## merge two dict
+
+    return configs

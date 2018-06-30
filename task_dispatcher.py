@@ -3,7 +3,7 @@ import traceback, os, json, sqlite3
 from node import Node
 import utils
 
-configs = json.load(open('config.json'))
+configs = utils.get_config()
 db_file_name=configs['servers_remaining']  ## this variable should and will be shared among multiple processes, not just the main process!!
 logger = utils.get_logger(os.path.basename(__file__))
 
