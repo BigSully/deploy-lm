@@ -27,7 +27,7 @@ def get_option():
 
 def get_config():
     configs = json.load(open('config.json'))
-    opt_dict=get_config()
+    opt_dict=get_option()
     configs = {**configs, **opt_dict}  ## merge two dict
 
     return configs
