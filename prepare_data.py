@@ -14,7 +14,8 @@ logger = utils.get_logger(os.path.basename(__file__))
 def prepare_custom_data(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
-        server_list = sys.argv[1:]
+        ip_address = configs['ipAddress']
+        server_list = ip_address.split()
         if len(server_list) == 0:
             with open(servers_manual) as f: server_list = f.readlines()
             logger.info('using servers in file.')

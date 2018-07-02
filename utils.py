@@ -21,6 +21,7 @@ def get_logger(name):
 def get_option():
     parser = argparse.ArgumentParser(description='Description of your program')
     parser.add_argument('-p', '--localPackage', help='path for the jaz file')
+    parser.add_argument('-ip', '--ipAddress', help='ip addresses')
     args = vars(parser.parse_args())
     return args
 
