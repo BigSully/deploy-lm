@@ -9,7 +9,7 @@ servers_all_name = configs['servers_all']
 logger = utils.get_logger(os.path.basename(__file__))
 
 ## Servers specified on command line parameters take precedence over those servers within the file.
-## python xxx.py  ip1 ip2 ip3...
+## python xxx.py -ip ip1 ip2 ip3...
 ## python xxx.py
 def prepare_custom_data(func):
     @wraps(func)
