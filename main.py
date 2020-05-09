@@ -1,9 +1,9 @@
-from prepare_data import prepare_all_data, prepare_custom_data
+from server_store import all_servers, remaining_servers
 from parallelizer import parallel_run
 from task import deploy, profiling, monitor
 
-# @prepare_custom_data  # keep executing tasks on the rest of the servers after interruption or exit
-@prepare_all_data
+# @remaining_servers  # keep executing tasks on the rest of the servers after interruption or exit
+@all_servers
 @profiling
 def main():
     parallel_run(deploy)  ## run tasks concurrently

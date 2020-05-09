@@ -11,7 +11,7 @@ logger = utils.get_logger(os.path.basename(__file__))
 ## Servers specified on command line parameters take precedence over those servers within the file.
 ## python xxx.py -ip ip1 ip2 ip3...
 ## python xxx.py
-def prepare_custom_data(func):
+def remaining_servers(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         ip_address = configs['ipAddress']
@@ -34,7 +34,7 @@ def prepare_custom_data(func):
     return wrapper
 
 
-def prepare_all_data(func):
+def all_servers(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         servers = json.load(open(servers_all_name))
