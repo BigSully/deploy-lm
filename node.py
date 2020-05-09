@@ -6,7 +6,7 @@ logger = utils.get_logger(os.path.basename(__file__))
 
 class Node:
     def __init__(self, context):
-        self.host=context['privateHost']
+        self.host=context['publicHost']
         self.username=context['sshUser']
         self.password=context['sshPassword']
 

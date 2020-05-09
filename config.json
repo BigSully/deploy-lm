@@ -1,7 +1,7 @@
 {
-  "servers_all": "server.json",
+  "servers_all": "server.prototype.json",
   "servers_remaining": "servers.db",
   "servers_manual": "servers.txt",
-  "max_workers": 2,
+  "max_workers": 10,
   "dummy": 1
 }

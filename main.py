@@ -6,7 +6,7 @@ from task import deploy, profiling, monitor
 @all_servers
 @profiling
 def main():
-    parallel_run(deploy)  ## run tasks concurrently
+    parallel_run(monitor)  ## run tasks concurrently
     # logging.disable(logging.CRITICAL)
     # parallel_run(monitor)  ## run tasks concurrently
 
