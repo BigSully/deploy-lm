@@ -1,5 +1,5 @@
 from prepare_data import prepare_all_data, prepare_custom_data
-from task_dispatcher import parallel_run
+from parallelizer import parallel_run
 from task import deploy, profiling, monitor
 
 # @prepare_custom_data  # keep executing tasks on the rest of the servers after interruption or exit
